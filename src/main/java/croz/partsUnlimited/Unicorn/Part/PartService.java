@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +36,16 @@ public class PartService {
             throw new IllegalStateException("Id taken.");
         }
         partRepository.save(part);
+    }
+
+    public Part getPartById(Long partId) {
+        return partRepository.findById(partId)
+                .orElseThrow(() -> new EntityNotFoundException("Part was not found."));
+    }
+
+    public List<Part> getPartByDate(String dateOfProduction) {
+        LocalDate date = LocalDate.parse(dateOfProduction);
+        return partRepository.findPartByDateOfProduction(date)
+                .orElseThrow(() -> new EntityNotFoundException("Part was not found."));
     }
 }
