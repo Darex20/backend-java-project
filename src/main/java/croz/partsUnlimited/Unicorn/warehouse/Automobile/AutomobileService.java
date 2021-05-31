@@ -27,21 +27,12 @@ public class AutomobileService {
         return automobileRepository.findAll();
     }
 
-    public Automobile getAutomobileByName(String brandAndName) {
+    /*public Automobile getAutomobileByName(String brandAndName) {
         String brandName = brandAndName.split("_")[0];
         String automobileName = brandAndName.split("_")[1];
         return automobileRepository.findByBrandNameAndAutomobileName(brandName, automobileName)
                 .orElseThrow(() -> new EntityNotFoundException("Automobile not found"));
-    }
+    }*/
 
-    public int getPartCount(List<Part> parts){
-        int counter = 0;
-        for(Part part : parts){
-            if(partRepository.findById(part.getPartId()).isPresent()){
-                counter++;
-            }
-        }
 
-        return counter;
-    }
 }

@@ -1,9 +1,12 @@
 package croz.partsUnlimited.Unicorn.warehouse.Brand;
 
+import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
+
 import javax.persistence.*;
+import java.util.List;
 
 
-@MappedSuperclass
+@Entity(name = "Brand")
 @Table
 public class Brand {
 
@@ -14,8 +17,12 @@ public class Brand {
     )
     String brandName;
 
-    public Brand(String brandName) {
+    @ManyToMany
+    List<Automobile> brandAutomobiles;
+
+    public Brand(String brandName, List<Automobile> brandAutomobiles) {
         this.brandName = brandName;
+        this.brandAutomobiles = brandAutomobiles;
     }
 
     public Brand(){ }
@@ -28,4 +35,11 @@ public class Brand {
         this.brandName = brandName;
     }
 
+    public List<Automobile> getBrandAutomobiles() {
+        return brandAutomobiles;
+    }
+
+    public void setBrandAutomobiles(List<Automobile> brandAutomobiles) {
+        this.brandAutomobiles = brandAutomobiles;
+    }
 }

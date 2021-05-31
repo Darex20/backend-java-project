@@ -12,8 +12,8 @@ import java.util.Optional;
 public interface AutomobileRepository extends JpaRepository<Automobile, RelationshipName> {
 
     // @Query("SELECT a FROM Automobile WHERE brandName = :brandName AND automobileName = :automobileName")
-    Optional<Automobile> findByBrandNameAndAutomobileName(
+    /* Optional<Automobile> findByBrandNameAndAutomobileName(
             @Param("brandName") String brandName, @Param("automobileName") String automobileName
-    );
+    );*/
 
 }

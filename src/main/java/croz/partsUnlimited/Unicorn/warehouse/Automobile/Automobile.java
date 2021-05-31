@@ -11,8 +11,7 @@ import java.util.List;
 
 @Entity(name = "Automobile")
 @Table
-@IdClass(RelationshipName.class)
-public class Automobile extends Brand implements Serializable {
+public class Automobile implements Serializable {
 
     @Id
     @Column(
@@ -20,14 +19,12 @@ public class Automobile extends Brand implements Serializable {
     )
     String automobileName;
 
-    @Transient
+    @OneToMany(cascade = {CascadeType.ALL})
     List<Part> parts;
 
-
-    public Automobile(String brandName, String automobileName, List<Part> parts) {
-        super(brandName);
+    public Automobile(String automobileName, List<Part> parts) {
         this.automobileName = automobileName;
-
+        this.parts = parts;
     }
 
     public Automobile(){}
@@ -49,18 +46,12 @@ public class Automobile extends Brand implements Serializable {
         this.parts = parts;
     }
 
-    public int getPartCount(){
-        if (parts == null){
-            return 0;
-        }
-        return parts.size();
-    }
 
     @Override
     public String toString() {
         return "Automobile{" +
-                "brand_and_automobile='" + super.getBrandName() + " " + this.getAutomobileName() + '\'' +
-                ", count=" + getPartCount() +
+                "automobileName='" + automobileName + '\'' +
+                ", parts=" + parts +
                 '}';
     }
 }
