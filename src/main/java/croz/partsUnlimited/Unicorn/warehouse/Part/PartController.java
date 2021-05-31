@@ -1,14 +1,13 @@
-package croz.partsUnlimited.Unicorn.Part;
+package croz.partsUnlimited.Unicorn.warehouse.Part;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/parts")
+@RequestMapping(path = "warehouse/parts")
 public class PartController {
 
     private final PartService partService;

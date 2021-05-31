@@ -1,13 +1,13 @@
-package croz.partsUnlimited.Unicorn.Part;
+package croz.partsUnlimited.Unicorn.warehouse.Part;
 
+import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
+import croz.partsUnlimited.Unicorn.warehouse.Part.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +17,7 @@ public class PartService {
     private final PartRepository partRepository;
 
     @Autowired
-    public PartService(PartRepository partRepository) {
+    public PartService(@Qualifier("parts")PartRepository partRepository) {
         this.partRepository = partRepository;
     }
 

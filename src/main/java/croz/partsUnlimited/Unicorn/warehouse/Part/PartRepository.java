@@ -1,13 +1,15 @@
-package croz.partsUnlimited.Unicorn.Part;
+package croz.partsUnlimited.Unicorn.warehouse.Part;
 
+import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Qualifier("parts")
 @Repository
 public interface PartRepository extends JpaRepository<Part, Long>{
 

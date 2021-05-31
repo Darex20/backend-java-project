@@ -1,4 +1,4 @@
-package croz.partsUnlimited.Unicorn.Part;
+package croz.partsUnlimited.Unicorn.warehouse.Part;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,13 +19,11 @@ public class Part {
             generator = "part_sequence"
     )
     @Column(
-            name = "partId",
             nullable = false
     )
     private long partId;
 
     @Column(
-            name = "dateOfProduction",
             nullable = true
     )
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
