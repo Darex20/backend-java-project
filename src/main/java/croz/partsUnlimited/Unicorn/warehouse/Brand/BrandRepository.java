@@ -10,7 +10,7 @@ import java.util.List;
 
 @Qualifier("brands")
 @Repository
-public interface BrandRepository extends JpaRepository<Brand, String> {
+public interface BrandRepository extends JpaRepository<Brand, Long> {
 
 
 }

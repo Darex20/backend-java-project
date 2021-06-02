@@ -10,19 +10,31 @@ import java.util.List;
 @Table
 public class Brand {
 
-
     @Id
     @Column(
-          nullable = false
+            nullable = false,
+            name = "brandid"
+    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long brandId;
+
+    @Column(
+          name = "brandname"
     )
     String brandName;
 
-    @ManyToMany
+    @OneToMany(
+            cascade = {CascadeType.MERGE}
+    )
     List<Automobile> brandAutomobiles;
 
     public Brand(String brandName, List<Automobile> brandAutomobiles) {
         this.brandName = brandName;
         this.brandAutomobiles = brandAutomobiles;
+    }
+
+    public Brand(String brandName) {
+        this.brandName = brandName;
     }
 
     public Brand(){ }

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Qualifier("automobiles")
 @Repository
-public interface AutomobileRepository extends JpaRepository<Automobile, RelationshipName> {
+public interface AutomobileRepository extends JpaRepository<Automobile, Long> {
 
     // @Query("SELECT a FROM Automobile WHERE brandName = :brandName AND automobileName = :automobileName")
     /* Optional<Automobile> findByBrandNameAndAutomobileName(

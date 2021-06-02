@@ -2,6 +2,9 @@ package croz.partsUnlimited.Unicorn.warehouse.Part;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +25,9 @@ public class PartController {
         return partService.getParts();
     }
 
-    @GetMapping("/id/{partId}")
-    public Part getPartById(@PathVariable Long partId) {
-        return partService.getPartById(partId);
+    @GetMapping("/serialNumber/{serialNumber}")
+    public Part getPartById(@PathVariable long serialNumber) {
+        return partService.getPartBySerialNumber(serialNumber);
     }
 
     @GetMapping("/date/{dateOfProduction}")
@@ -35,6 +38,12 @@ public class PartController {
     @PostMapping
     public void addPartByDate(@RequestBody Part part){
         partService.addNewPartByDate(part);
+    }
+
+    @DeleteMapping("/serialNumber/{serialNumber}")
+    public ResponseEntity<String> delPartById(@PathVariable long serialNumber) {
+        partService.delete(serialNumber);
+        return new ResponseEntity<String>("Successfully deleted part with id: " + serialNumber, HttpStatus.OK);
     }
 
 

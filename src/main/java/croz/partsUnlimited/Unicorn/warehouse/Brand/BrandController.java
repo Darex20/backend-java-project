@@ -7,8 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +29,51 @@ public class BrandController {
         this.partService = partService;
     }
 
+    @GetMapping(path = "/automobiles/parts/{brandAndAuto}")
+    public List<Part> getBrandAndAutoPart(@PathVariable String brandAndAuto){
+        List<Part> partList = new ArrayList<>();
+        for(Brand brand : brandService.getBrands()){
+            for(Automobile auto : brand.getBrandAutomobiles()){
+                for(Part part : auto.getParts()){
+                    String name = brand.getBrandName() + auto.getAutomobileName();
+                    if(name.equals(brandAndAuto) && partService.getParts().contains(part)){
+                        partList.add(part);
+                    }
+                }
+            }
+        }
+        if(!partList.isEmpty()){
+            return partList;
+        } else {
+            throw new EntityNotFoundException("There are no parts.");
+        }
+    }
+
     @GetMapping(path = "/automobiles")
     public List<String> getAutomobiles() throws JSONException {
-        List<Brand> brands = brandService.getBrands();
         JSONObject jsonString = new JSONObject();
         String brandAndAutoName;
+        List<String> autos = new ArrayList<>();
         List<String> list = new ArrayList<String>();
         int counter = 0;
-        for (Brand brand : brands){
+        for (Brand brand : brandService.getBrands()){
             for(Automobile auto : brand.getBrandAutomobiles()){
+                autos.add(auto.toString());
+                /*counter = 0;
                 brandAndAutoName = brand.getBrandName() + " " +  auto.getAutomobileName();
-                for(Part part : auto.getParts()){
-                    if(partService.getParts().contains(part)){
+                List<Part> parts = partService.getParts();
+                for(Part part : parts){
+                    System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                    System.out.println(part.getAutomobiles());
+                    if(part.getAutomobiles().contains(auto)){
                         counter++;
                     }
                 }
                 jsonString.put("brand_and_automobile", brandAndAutoName);
                 jsonString.put("count", counter);
-                list.add(jsonString.toString());
+                list.add(jsonString.toString());*/
             }
         }
-        return list;
+        return autos;
     }
 }

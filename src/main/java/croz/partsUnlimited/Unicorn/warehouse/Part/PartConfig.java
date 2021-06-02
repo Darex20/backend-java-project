@@ -12,10 +12,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class PartConfig {
 
-
+    /*
     @Bean
     CommandLineRunner commandLineRunner(PartRepository partRepository
                                     , AutomobileRepository automobileRepository, BrandRepository brandRepository){
@@ -51,7 +51,8 @@ public class PartConfig {
                             new Part(
                                     LocalDate.of(2020, Month.OCTOBER, 2)),
                             new Part(
-                                    LocalDate.of(2018, Month.MARCH, 22)))
+                                    LocalDate.of(2018, Month.MARCH, 22))
+                    )
             );
 
             Automobile a2 = new Automobile(
@@ -61,8 +62,8 @@ public class PartConfig {
                             new Part(
                                     LocalDate.of(2006, Month.JULY, 15)),
                             new Part(
-                                    LocalDate.of(2020, Month.DECEMBER, 3)
-                            ))
+                                    LocalDate.of(2020, Month.DECEMBER, 3))
+                    )
             );
 
             Automobile a3 = new Automobile(
@@ -72,7 +73,8 @@ public class PartConfig {
                             new Part(
                                     LocalDate.of(2019, Month.JUNE, 20)),
                             new Part(
-                                    LocalDate.of(2020, Month.DECEMBER, 3)))
+                                    LocalDate.of(2020, Month.DECEMBER, 3))
+                    )
             );
 
             Brand b1 = new Brand(
@@ -85,8 +87,8 @@ public class PartConfig {
             );
 
             automobileRepository.saveAll(List.of(a1,a2,a3));
-            partRepository.saveAll(List.of(p1,p2,p3,p4,p5,p6));
+            // partRepository.saveAll(List.of(p1,p2,p3,p4,p5,p6));
             brandRepository.saveAll(List.of(b1,b2));
-        };
-    }
+        }
+    }*/
 }
