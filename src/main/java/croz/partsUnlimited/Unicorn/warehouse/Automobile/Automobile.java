@@ -2,6 +2,7 @@ package croz.partsUnlimited.Unicorn.warehouse.Automobile;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import croz.partsUnlimited.Unicorn.warehouse.Brand.Brand;
 import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
 import org.hibernate.annotations.OnDelete;
@@ -24,17 +25,28 @@ public class Automobile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long automobileId;
 
-    @JoinColumn
+    @Column(
+            name = "automobilename"
+    )
     String automobileName;
 
     @JsonIgnore
     @ManyToMany(
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST},
             mappedBy = "automobiles"
     )
+    /*@JoinTable(
+            name = "automobilepart",
+            joinColumns = @JoinColumn(name = "partid"),
+            inverseJoinColumns = @JoinColumn(name = "automobileid")
+    )*/
     List<Part> parts;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"brandId"})
+    @JoinColumn(
+            name = "brandid",
+            nullable = false
+    )
     @ManyToOne(
             cascade = {CascadeType.MERGE}
     )
@@ -87,11 +99,11 @@ public class Automobile {
         part.getAutomobiles().remove(this);
     }
 
-
     @Override
     public String toString() {
+        String newline = System.getProperty("line.separator");
         return "{" +
-                "brand_and_automobile='" + brand.getBrandName() + automobileName + '\'' +
+                "brand_and_automobile='" + brand.getBrandName() + " " + automobileName + '\'' +
                 ", count=" + parts.size() +
                 '}';
     }

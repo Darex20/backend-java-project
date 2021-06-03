@@ -2,7 +2,9 @@ package croz.partsUnlimited.Unicorn.warehouse.Part;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class Part {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
@@ -24,22 +27,25 @@ public class Part {
     )
     private Long partId;
 
+    @JsonInclude
     @Column(
             name = "serialnumber",
             unique = true
     )
-    private long serialNumber;
+    private Long serialNumber;
 
     @Column(name = "dateofproduction")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfProduction;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(
+            cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST}
+    )
     @JoinTable(
-            name = "automobileParts",
-            joinColumns = @JoinColumn(name = "automobileName"),
-            inverseJoinColumns = @JoinColumn(name = "partId")
+            name = "automobilepart",
+            joinColumns = @JoinColumn(name = "partid"),
+            inverseJoinColumns = @JoinColumn(name = "automobileid")
     )
     List<Automobile> automobiles;
 
@@ -58,8 +64,20 @@ public class Part {
         return automobiles;
     }
 
-    public long getPartId() {
+    public void setAutomobiles(List<Automobile> automobiles) {
+        this.automobiles = automobiles;
+    }
+
+    public Long getPartId() {
         return partId;
+    }
+
+    public long getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(long serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public void setPartId(long partId) {

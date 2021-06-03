@@ -24,6 +24,7 @@ public interface PartRepository extends JpaRepository<Part, Long>{
     // @Query("SELECT p FROM Part p WHERE p.dateOfProduction = ?1")
     Optional<Part> findPartByPartId(Long partId);
 
-    //@Query("SELECT p FROM Part p WHERE p.serialNumber = ?1")
-    Optional<Part> getPartBySerialNumber(long serialNumber);
+    // @Query("SELECT p FROM Part p WHERE p.serialNumber = ?1")
+    Optional<Part> getPartBySerialNumber(Long serialNumber);
+
 }

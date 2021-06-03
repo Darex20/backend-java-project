@@ -24,6 +24,7 @@ public class Brand {
     String brandName;
 
     @OneToMany(
+            mappedBy = "brand",
             cascade = {CascadeType.MERGE}
     )
     List<Automobile> brandAutomobiles;

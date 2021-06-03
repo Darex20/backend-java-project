@@ -8,7 +8,7 @@ CREATE TABLE Brand
 CREATE TABLE Part
 (
   partId SERIAL NOT NULL,
-  serialNumber INT UNIQUE NOT NULL,
+  serialNumber SERIAL UNIQUE,
   dateOfProduction DATE NOT NULL,
   PRIMARY KEY (partId)
 );

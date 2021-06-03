@@ -29,14 +29,14 @@ public class BrandController {
         this.partService = partService;
     }
 
-    @GetMapping(path = "/automobiles/parts/{brandAndAuto}")
+    @GetMapping(path = "/automobiles/{brandAndAuto}")
     public List<Part> getBrandAndAutoPart(@PathVariable String brandAndAuto){
         List<Part> partList = new ArrayList<>();
         for(Brand brand : brandService.getBrands()){
             for(Automobile auto : brand.getBrandAutomobiles()){
                 for(Part part : auto.getParts()){
                     String name = brand.getBrandName() + auto.getAutomobileName();
-                    if(name.equals(brandAndAuto) && partService.getParts().contains(part)){
+                    if(name.equals(brandAndAuto)){
                         partList.add(part);
                     }
                 }
@@ -51,29 +51,12 @@ public class BrandController {
 
     @GetMapping(path = "/automobiles")
     public List<String> getAutomobiles() throws JSONException {
-        JSONObject jsonString = new JSONObject();
-        String brandAndAutoName;
-        List<String> autos = new ArrayList<>();
-        List<String> list = new ArrayList<String>();
-        int counter = 0;
+        List<String> list = new ArrayList<>();
         for (Brand brand : brandService.getBrands()){
             for(Automobile auto : brand.getBrandAutomobiles()){
-                autos.add(auto.toString());
-                /*counter = 0;
-                brandAndAutoName = brand.getBrandName() + " " +  auto.getAutomobileName();
-                List<Part> parts = partService.getParts();
-                for(Part part : parts){
-                    System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                    System.out.println(part.getAutomobiles());
-                    if(part.getAutomobiles().contains(auto)){
-                        counter++;
-                    }
-                }
-                jsonString.put("brand_and_automobile", brandAndAutoName);
-                jsonString.put("count", counter);
-                list.add(jsonString.toString());*/
+                list.add(auto.toString());
             }
         }
-        return autos;
+        return list;
     }
 }

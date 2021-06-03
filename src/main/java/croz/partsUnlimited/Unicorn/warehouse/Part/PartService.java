@@ -34,19 +34,6 @@ public class PartService {
         partRepository.save(part);
     }
 
-    public void addNewPartById(Part part){
-        Optional<Part> partById =
-                partRepository.findPartByPartId(part.getPartId());
-        if(partById.isPresent()){
-            throw new IllegalStateException("Id taken.");
-        }
-        partRepository.save(part);
-    }
-
-    public Part getPartById(Long partId) {
-        return partRepository.findById(partId)
-                .orElseThrow(() -> new EntityNotFoundException("Part was not found."));
-    }
 
     public List<Part> getPartByDate(String dateOfProduction) {
         LocalDate date = LocalDate.parse(dateOfProduction);
@@ -54,30 +41,21 @@ public class PartService {
                 .orElseThrow(() -> new EntityNotFoundException("Part was not found."));
     }
 
-    public void delete(Long partId) {
-        Part part = partRepository.getById(partId);
-        /*for(Automobile auto : part.getAutomobiles()){
-            if(part.getAutomobiles().size() == 1) {
-                auto.setBrand(null);
-                Optional<Automobile> automobile = automobileRepository.findById(auto.getAutomobileName());
-                if(automobile.isPresent()){
-                    List<Part> parts = automobile.get().getParts();
-                    parts.remove(part);
-                }
-            }
-        } */
-        for(Automobile auto : part.getAutomobiles()){
-            auto.getParts().remove(part);
+    public void deleteBySerialNumber(Long serialNumber) {
+        if(partRepository.getPartBySerialNumber(serialNumber).isEmpty()){
+            throw new EntityNotFoundException("Part could not have been found.");
         }
-        //part.getAutomobiles().removeAll(part.getAutomobiles());
+        Part part = partRepository.getPartBySerialNumber(serialNumber).get();
+        System.out.println("Part je " + part);
+        part.getAutomobiles().removeAll(part.getAutomobiles());
         partRepository.delete(part);
     }
 
-    public Part getPartBySerialNumber(long serialNumber) {
+    public Part getPartBySerialNumber(Long serialNumber) {
         if(partRepository.getPartBySerialNumber(serialNumber).isPresent()){
             return partRepository.getPartBySerialNumber(serialNumber).get();
         } else {
-            throw new EntityNotFoundException("Part with that id was not found.");
+            throw new EntityNotFoundException("Part with that serial Number was not found.");
         }
     }
 }

@@ -26,7 +26,7 @@ public class PartController {
     }
 
     @GetMapping("/serialNumber/{serialNumber}")
-    public Part getPartById(@PathVariable long serialNumber) {
+    public Part getPartById(@PathVariable Long serialNumber) {
         return partService.getPartBySerialNumber(serialNumber);
     }
 
@@ -41,8 +41,8 @@ public class PartController {
     }
 
     @DeleteMapping("/serialNumber/{serialNumber}")
-    public ResponseEntity<String> delPartById(@PathVariable long serialNumber) {
-        partService.delete(serialNumber);
+    public ResponseEntity<String> delPartBySerialNumber(@PathVariable Long serialNumber) {
+        partService.deleteBySerialNumber(serialNumber);
         return new ResponseEntity<String>("Successfully deleted part with id: " + serialNumber, HttpStatus.OK);
     }
 
