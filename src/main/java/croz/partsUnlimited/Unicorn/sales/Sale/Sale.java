@@ -2,33 +2,59 @@ package croz.partsUnlimited.Unicorn.sales.Sale;
 
 
 import croz.partsUnlimited.Unicorn.sales.Article.Article;
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-//@Entity(name = "Sale")
-//@Table
+
 public class Sale {
 
-
-    @Column(
-            nullable = false
-    )
-    @Id
     Long saleId;
 
-    @Column
     LocalDate startDate;
 
-    @Column
     LocalDate endDate;
 
-    @Column
     double percentageOff;
 
-    @OneToMany(cascade = {CascadeType.ALL})
     List<Article> articles;
 
+    public Long getSaleId() {
+        return saleId;
+    }
 
+    public void setSaleId(Long saleId) {
+        this.saleId = saleId;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public double getPercentageOff() {
+        return percentageOff;
+    }
+
+    public void setPercentageOff(double percentageOff) {
+        this.percentageOff = percentageOff;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 }

@@ -2,15 +2,12 @@ package croz.partsUnlimited.Unicorn.warehouse.Brand;
 
 import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
 import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
-import croz.partsUnlimited.Unicorn.warehouse.Part.PartService;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +18,10 @@ import java.util.List;
 public class BrandController {
 
     private final BrandService brandService;
-    private final PartService partService;
 
     @Autowired
-    public BrandController(BrandService brandService, PartService partService){
+    public BrandController(BrandService brandService){
         this.brandService = brandService;
-        this.partService = partService;
     }
 
     @GetMapping(path = "/automobiles/{brandAndAuto}")

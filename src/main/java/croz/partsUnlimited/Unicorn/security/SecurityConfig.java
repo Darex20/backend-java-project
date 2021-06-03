@@ -20,10 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/warehouse/**").hasRole("WAREHOUSE").and()
                 .formLogin().and().authorizeRequests()
-                .antMatchers("/sales/**").hasRole("SALES").
-                anyRequest().authenticated().and().httpBasic().and().logout().and().csrf().disable();
-        //http.authorizeRequests().antMatchers("/sales/article").hasRole("CUSTOMER").
-        //        and().formLogin();
+                .antMatchers("/sales/**").hasRole("SALES")
+                .antMatchers(HttpMethod.GET, "/offer/*").hasAnyRole()
+                .anyRequest().authenticated().and().httpBasic().and().logout().and().csrf().disable();
     }
 
     @Autowired
@@ -32,6 +31,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("warehouse").password("skladište").roles("WAREHOUSE").password("{noop}skladište");
         auth.inMemoryAuthentication().withUser("customer").password("kupac").roles("CUSTOMER").password("{noop}kupac");
     }
-
 
 }

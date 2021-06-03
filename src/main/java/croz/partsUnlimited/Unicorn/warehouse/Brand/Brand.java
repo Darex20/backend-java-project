@@ -1,7 +1,6 @@
 package croz.partsUnlimited.Unicorn.warehouse.Brand;
 
 import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
-
 import javax.persistence.*;
 import java.util.List;
 

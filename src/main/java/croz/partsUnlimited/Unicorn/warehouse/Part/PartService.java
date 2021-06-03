@@ -1,29 +1,21 @@
 package croz.partsUnlimited.Unicorn.warehouse.Part;
 
-import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
-import croz.partsUnlimited.Unicorn.warehouse.Automobile.AutomobileRepository;
-import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
-import croz.partsUnlimited.Unicorn.warehouse.Part.PartRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-@Service // same as @Component
+@Service
 public class PartService {
 
     private final PartRepository partRepository;
-    private final AutomobileRepository automobileRepository;
 
     @Autowired
-    public PartService(@Qualifier("parts")PartRepository partRepository, @Qualifier("automobiles")AutomobileRepository automobileRepository) {
+    public PartService(@Qualifier("parts")PartRepository partRepository) {
         this.partRepository = partRepository;
-        this.automobileRepository = automobileRepository;
     }
 
     public List<Part> getParts(){

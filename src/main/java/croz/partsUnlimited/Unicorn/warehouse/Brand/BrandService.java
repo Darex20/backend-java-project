@@ -1,8 +1,6 @@
 package croz.partsUnlimited.Unicorn.warehouse.Brand;
 
-import croz.partsUnlimited.Unicorn.warehouse.Automobile.Automobile;
-import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
-import croz.partsUnlimited.Unicorn.warehouse.Part.PartRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

@@ -10,3 +10,9 @@ VALUES ('5.1.2015.',1000), ('15.6.2006',1001), ('28.3.2019',1002),
 
 INSERT INTO automobilePart(automobileId, partId)
 VALUES (1,1), (1,2),(1,3), (2, 4), (2, 5), (3, 6), (3, 7);
+
+INSERT INTO sale(startDate, endDate, percentageOff, saleId)
+VALUES ('22.4.2018', '15.6.2021', 10, 1), ('10.3.2017', '10.5.2019', 5, 2);
+
+INSERT INTO article(basePrice, articleId, partId, saleId)
+VALUES (100, 1, 1, 1), (200, 2, 2, 2), (300, 3, 3, 1)

@@ -1,6 +1,0 @@
-POST http://localhost:8080/warehouse/parts
-Content-Type: application/json
-
-{
-  "dateOfProduction": "2021-01-05"
-}

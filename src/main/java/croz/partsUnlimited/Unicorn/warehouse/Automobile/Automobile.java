@@ -5,11 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import croz.partsUnlimited.Unicorn.warehouse.Brand.Brand;
 import croz.partsUnlimited.Unicorn.warehouse.Part.Part;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -35,11 +31,6 @@ public class Automobile {
             cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST},
             mappedBy = "automobiles"
     )
-    /*@JoinTable(
-            name = "automobilepart",
-            joinColumns = @JoinColumn(name = "partid"),
-            inverseJoinColumns = @JoinColumn(name = "automobileid")
-    )*/
     List<Part> parts;
 
     @JsonIgnoreProperties({"brandId"})

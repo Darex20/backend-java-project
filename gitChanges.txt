@@ -1,0 +1,54 @@
+commit b565dbb9993650a6f2c8f068eb3440bd27aa2caf
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Thu Jun 3 13:34:32 2021 +0200
+
+    Minor changes
+    
+    After fixing Day 2 and Day 3 are finished,
+    added database image
+
+commit 1a056983b21c7558724c8cecddf74851a17622ec
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Thu Jun 3 00:23:43 2021 +0200
+
+    Major changes
+    
+    Chaged a lot of things, added Sale and Article, implemented flyway and added its needed scripts for running.
+
+commit 4181a2876355995fee9b1c9e9d3572b801744d93
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Tue Jun 1 01:48:52 2021 +0200
+
+    Updated Automobile and Brand
+
+commit fcd6e20212c307a8ea3bcd7605aa878c1853e582
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Mon May 31 16:34:22 2021 +0200
+
+    Update Security, Automobile, Part
+    
+    Added SecurityConfig, added Automobile with its classes, added Brand class, updated Part and its classes
+
+commit 6c0aeb864060b6e0c1380343d6f99b7a5e41fa4e
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Mon May 31 01:23:09 2021 +0200
+
+    Updated Part package
+
+commit 48edd83eff63cd6287dcd65dbd278c327a18a780
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Mon May 31 00:40:59 2021 +0200
+
+    Added Part class
+
+commit 2f338986aa56d04664ccbae7c11319dcef3489a8
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Sun May 30 16:16:20 2021 +0200
+
+    Initial commit
+
+commit aabf0e813cfbc43aa665586e8aefe6df56f44da7
+Author: Darex20 <pava.dario@gmail.com>
+Date:   Sun May 30 15:28:10 2021 +0200
+
+    Initial commit
